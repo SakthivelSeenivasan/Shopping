@@ -8,7 +8,7 @@ const Header = () => {
     <Navbar bg='dark' variant='dark' style={{ height: "80" }}>
       <Container>
         <Navbar.Brand href='#home'>
-          <Link href='/'>Shopping Cart</Link>
+          <Link to='/'>Shopping Cart</Link>
         </Navbar.Brand>
           <Navbar.Text className='Search'>
             <FormControl
