@@ -1,18 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header.jsx";
+import Home from "./Components/Home";
+import Cart from "./Components/Cart";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path='/' exact>
-          Home
-        </Route>
-        <Route path='/cart' exact>
-          Cart
-        </Route>
+        <Route path='/' exact element={<Home />} />
+        <Route path='/cart' exact element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );
