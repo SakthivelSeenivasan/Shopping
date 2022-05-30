@@ -7,14 +7,41 @@ import "./styles.css";
 const Home = () => {
   const {
     state: { products },
+    productState: { sort, byStock, byFastDelivary, byRating, searchQuery },
   } = CartState();
 
-  console.log(products);
+  const transformProducts = () => {
+    let sortedProducts = products;
+
+    if (sort) {
+      sortedProducts = sortedProducts.sort((a, b) =>
+        sort === "lowToHigh" ? a.price - b.price : b.price - a.price
+      );
+    }
+    if (byStock) {
+      sortedProducts = sortedProducts.filter((prod) => prod.inStock);
+    }
+    if (byFastDelivary) {
+      sortedProducts = sortedProducts.filter((prod) => prod.byFastDelivary);
+    }
+    if (byRating) {
+      sortedProducts = sortedProducts.filter(
+        (prod) => prod.ratings >= byRating
+      );
+    }
+    if (searchQuery) {
+      sortedProducts = sortedProducts.filter((prod) =>
+        prod.name.toLowerCase().includes(searchQuery)
+      );
+    }
+    return sortedProducts;
+  };
+
   return (
     <div className='home'>
       <Filters />
       <div className='productContainer'>
-        {products.map((prod, index) => {
+        {transformProducts().map((prod, index) => {
           return <SingleProduct prod={prod} key={index} />;
         })}
       </div>
