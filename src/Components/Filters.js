@@ -1,13 +1,16 @@
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import Rating from "./Rating";
 
 const Filters = () => {
+  const [rate, setRate] = useState(3);
   return (
     <div className='filters'>
       <span className='title'>Filter Products</span>
       <span>
         <Form.Check
           inline
-          Label='Acending'
+          label='Ascending'
           name='group1'
           type='radio'
           id={`inline-1`}
@@ -16,7 +19,7 @@ const Filters = () => {
       <span>
         <Form.Check
           inline
-          Label='Descending'
+          label='Descending'
           name='group1'
           type='radio'
           id={`inline-2`}
@@ -25,7 +28,7 @@ const Filters = () => {
       <span>
         <Form.Check
           inline
-          Label='Include Out of Stock'
+          label='Include Out of Stock'
           name='group1'
           type='checkbox'
           id={`inline-3`}
@@ -34,16 +37,20 @@ const Filters = () => {
       <span>
         <Form.Check
           inline
-          Label='FastDelivary Only'
+          label='FastDelivary Only'
           name='group1'
           type='checkbox'
           id={`inline-4`}
         />
       </span>
-      {/* <span>
+      <span>
         <label style={{ paddingRight: 10 }}>Rating</label>
-        <Rating rating={byRating} style={{ cursor: "pointer" }} />
-      </span> */}
+        <Rating
+          rating={rate}
+          onClick={(i) => setRate(i)}
+          style={{ cursor: "pointer" }}
+        />
+      </span>
       <Button variant='light'>Clear Filters</Button>
     </div>
   );
